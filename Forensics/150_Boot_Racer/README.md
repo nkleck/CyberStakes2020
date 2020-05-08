@@ -132,10 +132,13 @@ Next select 16-bit for the disassembly.
 To start, lets look at our address `0x7DC0` in the assembly it has a data reference. Click the data reference `sub_3A` in the left side functions window to open it in a new tab.
 ![0x7DC0 reference](images/0x7DC0_reference.png)
 
+
 This is what the data reference intitially looks like
+
 ![initial_sub3a](images/initial_sub_3A.png)
 
 Thats a bunch of hex. Lets convert it to text by clicking each orange part and type `r` on your keyboard. The output is below.
+
 ![converted sub3a](images/convert_sub3A.png)
 
 Now we are getting somewhere. We see what looks like parts of the flag. We just have to figure out what order it needs to go. Lets read some assembly instructions.
@@ -146,6 +149,7 @@ Now we are getting somewhere. We see what looks like parts of the flag. We just 
 * The `mov si, '_t'` means **move** the ascii `_t` to the 16-bit CPU register **si**
 
 Now that we have the flag spread across the registers, imagine they look something like this.
+
 ![registers](images/registers.png)
 
 The rest of the instructions are going to move the ASCII text into our memory location `Ox7DC0`.
