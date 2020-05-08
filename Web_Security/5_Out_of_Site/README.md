@@ -13,3 +13,9 @@ The flag submission system lets us see the strings you submitted even when they'
 
 
 ## Solution
+
+So lets Right-Click > Inspect the submission flag submission box.
+![inspect](inspect.png)
+
+
+**ACI{hidden_in_plain_site_0688ee4d}**

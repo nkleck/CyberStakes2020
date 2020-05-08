@@ -33,4 +33,7 @@ Upgrade-Insecure-Requests: 1
 Cache-Control: max-age=0
 ```
 
+You can also use the Application Tab in chrome's Dev Tools and you will see the following under the cookies subtab
+![cookies](cookies.png)
+
 **ACI{cookies_fail_too_8e6c7226}**
