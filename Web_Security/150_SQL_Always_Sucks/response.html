@@ -1,0 +1,40 @@
+HTTP/1.1 200 OK
+Content-type: text/html; charset=UTF-8
+
+<html>
+	<head>
+		<title>The SQL Always Sucks</title>
+		<!-- UIkit CSS -->
+		<link rel="stylesheet" href="uikit.css" />
+		<!-- UIkit JS -->
+		<script src="uikit.js"></script>
+		<script src="uikit-icons.js"></script>
+		<style type="text/css">
+			.debug {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="uk-section uk-section-secondary uk-section-medium">
+			<div class="uk-container uk-text-center uk-container-small">
+				<h1>SeeQuil Retriever v0.2</h1>
+				<em class='uk-text-meta'>Dev Info Storage.</em>
+			</div>
+		</div>
+		<div uk-height-viewport="offset-top: true; offset-bottom: true;" class="uk-section uk-section-default uk-margin-remove-top uk-preserve-color">
+			<div class="uk-container uk-margin-remove-top uk-container-xsmall">
+				<div class="uk-grid-medium uk-child-width-expand@s uk-text-center" uk-grid>
+					<div class="uk-flex uk-flex-center">
+						<div>
+							<div class="uk-card uk-box-shadow-large uk-card-default uk-card-body">
+								<!--Dev is only using Sqlite. Bobby Needs to fix this -->
+																<p class='uk-text-capitalize'>Welcome, blarg !</p>															</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class='debug'> Debug: Last SQLite Query: SELECT lastname FROM Users WHERE firstname='blarg'</p>
+	</body>
+</html>

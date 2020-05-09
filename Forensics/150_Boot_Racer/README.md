@@ -23,19 +23,22 @@ We've found one last floppy disk [image](https://challenge.acictf.com/static/f9e
 Ok. Lets see what we are delaing with. Follow the previous boot challenge steps. When we boot the floppy we see the following output.
 ![floppy.img](images/boot_screenshot.png)
 
-So we now know the flag was at `0x7DC0` at some point during the boot. We are going to try two methods. First is stepping the boot process by starting the image with qemu and attaching to it with gdb. Method 2 (credit `bobbyD` for the walkthrough) uses the free version of IDA to analyze the floppy image for the flag.
+So we now know the flag was at `0x7DC0` at some point during the boot. We are going to try two methods. Method 1 is stepping the boot process by starting the image with qemu and attaching to it with gdb. Method 2 (credit `bobbyD` for the walkthrough) uses the free version of IDA to analyze the floppy image for the flag.
 
 ### Method 1
 
-Lets start qemu but make it wait for gdb. Check out these parameters.
+Start qemu but make it wait for gdb. Check out these qemu arguments.
 ```
 -S              freeze CPU at startup (use 'c' to start execution)
 -s              shorthand for -gdb tcp::1234
 ```
+
 This will allow us to step the boot process and watch `0x7DC0` memory location.
+
 ```
 qemu-system-x86_64 -s -S floppy.img
 ```
+
 We should be paused here:
 ![qemu_start](images/qemu_start.png)
 
@@ -46,7 +49,7 @@ $ gdb
 (gdb) target remote localhost:1234
 ```
 
-Set our watch point for the memory address `0x7DC0`. gdb will pause when something enters that address. So lets `c` (continue).
+Set our watch point for the memory address by typing `watch *0x7DC0`. gdb will pause when something enters that address. Lets `c` (continue).
 
 ```
 (gdb) watch *0x7DC0
@@ -60,7 +63,7 @@ Hardware watchpoint 4: *0x7DC0
 Continuing.
 ```
 
-Our watchpoint hit. Print the contents of the memory address (and some surround addresses). `x` prints in gdb. `4s` means 4 units and try to treat as a c string.
+Our watchpoint hit. Print the contents of the memory address (and some surrounding addresses). `x` prints in gdb. `4s` means 4 units and try to treat as a c string.
 
 ```
 Hardware watchpoint 1: *0x7DC0
