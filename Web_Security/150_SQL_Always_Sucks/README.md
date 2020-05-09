@@ -31,7 +31,7 @@ Start by entering a name in the form and lets see what response we get back. Ins
 ![response](response.png)
 
 There are two interesting parts in the HTML response.
-* We see some comments in the HTML that let us know the backed DB is Sqlite
+* We see some comments in the HTML that inform us the backed DB is Sqlite
   * `<!--Dev is only using Sqlite. Bobby Needs to fix this -->`
 * There is also a raw SQLite query in the debug class further down. This gives us more information about potential columns in a SQLite table.
   * `<p class='debug'> Debug: Last SQLite Query: SELECT lastname FROM Users WHERE firstname='blarg'</p>`
@@ -89,7 +89,7 @@ Excellent. We now know there are two tables `SuperSecretData` and `Users` in the
 
 #### Enumerate Columns for Tables
 
-This time we are going to try and get the names of the columns in the `SuperSecretData` table. Add `-D SQLite_masterdb`, `-T SuperSecretData`, and `--columns` to our sqlmap query string. The first flag names the database to enumerate. The second flag names the Table to enumerate. The last flag tells sqlmap what to enumerate from the table (ie the table columns).  Continue to let sqlmap optimize DBMS delay responses by answering `y` when prompted. Kick off this query and for a run. It's going to be a while before we get the results back.
+This time we are going to try and get the names of the columns in the `SuperSecretData` table. Add `-D SQLite_masterdb`, `-T SuperSecretData`, and `--columns` to our sqlmap query string. The first flag names the database to enumerate. The second flag names the Table to enumerate. The last flag tells sqlmap what to enumerate from the table (ie the table columns).  Continue to let sqlmap optimize DBMS delay responses by answering `y` when prompted. Kick off this query and go for a run. It's going to be a while before we get the results back.
 
 ```
 $ sqlmap -u "http://challenge.acictf.com:28986/?firstname=blarg" --dbms=SQLite --random-agent -D SQLite_masterdb -T SuperSecretData --columns
@@ -135,7 +135,7 @@ Table: SuperSecretData
 
 Boom! We have our flag. **ACI{59df47a3243d2f239ea878a7266}**
 
-You could have used the following queries to enumerate the User table, but it's not necessary. You would have found the lastname and firstname columns are filled with 20 `NULL` values. 
+You could have used the following queries to enumerate the User table, but it's not necessary. You would have found the lastname and firstname columns are filled with 20 `NULL` values.
 
 ```
 $ sqlmap -u "http://challenge.acictf.com:28986/?firstname=blarg" --dbms=SQLite --random-agent -D SQLite_masterdb -T Users --columns
