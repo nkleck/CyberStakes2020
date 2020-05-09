@@ -5,7 +5,7 @@
 | -----------------------------|---------|
 | [Out of Site](./5_Out_of_Site/) | 5 |
 | [More Out of Site](./10_More_Out_of_Site/) | 10 |
-| [Most Out of Site](./20_Most_Out_of_Site/) | 100 |
+| [Most Out of Site](./20_Most_Out_of_Site/) | 20 |
 | [Let me INNNNNN](./40_Let_me_INNNNNN/) | 40 |
 | [No Escape](./60_No_Escape/) | 60 |
 | [DENIED](./75_DENIED/) | 75 |
