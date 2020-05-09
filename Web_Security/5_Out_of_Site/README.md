@@ -15,6 +15,7 @@ The flag submission system lets us see the strings you submitted even when they'
 ## Solution
 
 So lets Right-Click > Inspect the submission flag submission box.
+
 ![inspect](inspect.png)
 
 
