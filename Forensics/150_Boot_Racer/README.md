@@ -23,7 +23,7 @@ We've found one last floppy disk [image](https://challenge.acictf.com/static/f9e
 Ok. Lets see what we are delaing with. Follow the previous boot challenge steps. When we boot the floppy we see the following output.
 ![floppy.img](images/boot_screenshot.png)
 
-So we now know the flag was at `0x7DC0` at some point during the boot. We are going to try two methods. First is stepping the boot process by starging the image with qemu and attaching to it with gdb. Method 2 (credit `bobbyD` for the walkthrough) uses the free version of IDA to analyze the flag image for the flag.
+So we now know the flag was at `0x7DC0` at some point during the boot. We are going to try two methods. First is stepping the boot process by starting the image with qemu and attaching to it with gdb. Method 2 (credit `bobbyD` for the walkthrough) uses the free version of IDA to analyze the floppy image for the flag.
 
 ### Method 1
 
@@ -39,14 +39,15 @@ qemu-system-x86_64 -s -S floppy.img
 We should be paused here:
 ![qemu_start](images/qemu_start.png)
 
-Now start gdb and then have it attach to the
+Now start gdb and then have it attach to qemu with `target remote localhost:1234`.
 
-start gdb and use `target remote localhost:1234` to attach to qemu
 ```
 $ gdb
 (gdb) target remote localhost:1234
 ```
-Set our watch point for the memory address `0x7DC0`. gdb will pause when something enters that address
+
+Set our watch point for the memory address `0x7DC0`. gdb will pause when something enters that address. So lets `c` (continue).
+
 ```
 (gdb) watch *0x7DC0
 Hardware watchpoint 4: *0x7DC0
@@ -59,7 +60,8 @@ Hardware watchpoint 4: *0x7DC0
 Continuing.
 ```
 
-Out watchpoint hit. Now lets print the contents of the memory address (and some surround addresses). `x` prints in gdb. `4s` means 4 units and try to treat as a c string.
+Our watchpoint hit. Print the contents of the memory address (and some surround addresses). `x` prints in gdb. `4s` means 4 units and try to treat as a c string.
+
 ```
 Hardware watchpoint 1: *0x7DC0
 
@@ -90,7 +92,7 @@ New value = 17217
 Continuing.
 ```
 
-We have the begining of our flag. So lets continue. gdb will pause as more enteres that watch address.
+We have the beginning of our flag. Lets continue. gdb will pause as more enters that watch address.
 ```
 ... (im truncating the output)
 (gdb) x/4s 0x7DC0
@@ -114,7 +116,8 @@ Continuing.
 0x7dce: ""
 (gdb)
 ```
-Also at this point, we see the message in the boot window that was passed over too quickly without stepping the boot.
+
+At this point, we see the message in the boot window that was passed over too quickly without stepping the boot.
 ![flag stepped](images/flag_stepped.png)
 
 So. We can assemble the flag and get **ACI{fast_dbg}**
@@ -123,25 +126,28 @@ So. We can assemble the flag and get **ACI{fast_dbg}**
 
 Shout-out to `bobbyD` for this awesome approach.
 
-Ok. Start IDA and open the floppy.
+Start IDA and open the floppy.
+
 ![open_floppy_in_ida](images/open_floppy_in_ida.png)
 
 Next select 16-bit for the disassembly.
+
 ![16-bit mode](images/16-bit_mode.png)
 
-To start, lets look at our address `0x7DC0` in the assembly it has a data reference. Click the data reference `sub_3A` in the left side functions window to open it in a new tab.
+Lets look at our address `0x7DC0` in the assembly. It has a data reference. Click the data reference `sub_3A` in the left side functions window to open it in a new tab.
+
 ![0x7DC0 reference](images/0x7DC0_reference.png)
 
 
-This is what the data reference intitially looks like
+This is what the data reference initially looks like
 
 ![initial_sub3a](images/initial_sub_3A.png)
 
-Thats a bunch of hex. Lets convert it to text by clicking each orange part and type `r` on your keyboard. The output is below.
+Thats a bunch of hex. Convert it to text by clicking each orange part and type `r` on your keyboard. The output is below.
 
 ![converted sub3a](images/convert_sub3A.png)
 
-Now we are getting somewhere. We see what looks like parts of the flag. We just have to figure out what order it needs to go. Lets read some assembly instructions.
+Now we are getting somewhere. We see what looks like parts of the flag. We just have to figure out what order it needs to go. Lets read some assembly instructions!
 
 * The `mov bx, 'fg'` means **move** the ascii `fg` to the 16-bit CPU register **bx**
 * The `mov cx, 'ab'` means **move** the ascii `ab` to the 16-bit CPU register **cx**
