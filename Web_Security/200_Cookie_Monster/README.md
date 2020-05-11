@@ -20,7 +20,7 @@ Lets make some yummy cookies! Maybe you can even find some extra tasty ones: htt
 * python script score.py
 
 
-Before we get started, go to the challenge page http://challenge.acictf.com:45101 and familiarize yourself with the site. Right-Click > Inspect and then add a bunch of ingredients, click `Bake` and watch the changes that occur on the website. Lets document the process of baking and submitting a "Cookie" recipe for approval.
+Before we get started, go to the challenge page http://challenge.acictf.com:45101 and familiarize yourself with the site. Right-Click > Inspect and then add a bunch of ingredients, click `Bake!` and watch the changes that occur on the website. Lets document the process of baking and submitting a "Cookie" recipe for approval.
 
 * Loading the website takes you to the `/cookie` endpoint in the URL.
 * Here, you give your recipe a name and add "ingredients" like flower, sugar, etc to the form.

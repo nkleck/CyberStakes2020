@@ -16,6 +16,8 @@ Let's see if you can break into our [secure vault](http://challenge.acictf.com:4
 ### Tools
 * Burp Suite
 
+This challenge is no longer available, so we will reconstruct a walkthrough from my notes. 
+
 Ok. Access the Website referenced in secure vault. There is a link to reset password.
 
 We are going to intercept this `POST` request using Burp Suite.

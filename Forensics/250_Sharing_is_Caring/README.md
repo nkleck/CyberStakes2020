@@ -22,6 +22,9 @@ Hey Challanger. I know you're putting together that Veteran's Day presentation. 
 * [strings](https://linux.die.net/man/1/strings)
 * [secret-sharing](https://github.com/blockstack/secret-sharing)
 
+This challenge is no longer available, but we should be able to recreate it from my notes and the files.tgz.
+
+
 Lets start by opening our archive. It extracts 4  png files in images directory
 ```
 $ tar xzvf files.tgz
