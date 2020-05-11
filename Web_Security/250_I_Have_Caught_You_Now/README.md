@@ -26,7 +26,7 @@ Browse the website and take note of the different pages and forms. Lets list the
 * Each page contains a `Search` box in the upper right corner. This is where we will fuzz the WAF (Web Application Firewall)
 * There is a page where we submit articles to the admin for review. It is at http://challenge.acictf.com:55351/submit.
 
-Since we do not have an account that can view the obfuscated page containing the, we will need to use the submission box in the third bullet to render the page and return to us the flag.
+Since we do not have an account that can view the obfuscated page containing the flag, we will need to use the submission box in the third bullet to render the page and return to us the flag.
 
 #### Approach
 * Enumerate Details about the WAF
@@ -95,7 +95,10 @@ Http.onreadystatechange = (e) => {
 }
 ```
 
-Paste the above code into https://www.base64encode.org/ and click encode. Our resulting payload is `Y29uc3QgSHR0cCA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOwpjb25zdCB1cmw9J2h0dHA6Ly9jaGFsbGVuZ2UuYWNpY3RmLmNvbTo1NTM1MS9hcnRpY2xlLzEnOwpIdHRwLm9wZW4oIkdFVCIsIHVybCk7Ckh0dHAuc2VuZCgpOwoKSHR0cC5vbnJlYWR5c3RhdGVjaGFuZ2UgPSAoZSkgPT4gewogIGNvbnNvbGUubG9nKEh0dHAucmVzcG9uc2VUZXh0KQp9`
+Paste the above code into https://www.base64encode.org/ and click encode. Our resulting payload is
+```
+Y29uc3QgSHR0cCA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOwpjb25zdCB1cmw9J2h0dHA6Ly9jaGFsbGVuZ2UuYWNpY3RmLmNvbTo1NTM1MS9hcnRpY2xlLzEnOwpIdHRwLm9wZW4oIkdFVCIsIHVybCk7Ckh0dHAuc2VuZCgpOwoKSHR0cC5vbnJlYWR5c3RhdGVjaGFuZ2UgPSAoZSkgPT4gewogIGNvbnNvbGUubG9nKEh0dHAucmVzcG9uc2VUZXh0KQp9
+```
 
 Now piece together the entire URL and drop it into the browser.
 ```
