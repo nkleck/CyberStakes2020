@@ -14,5 +14,5 @@
 | [Cookie Monster](./200_Cookie_Monster/) | 200 |
 | [I Have Caught You Now](./250_I_Have_Caught_You_Now/) | 250 |
 | [Extremely Malicious Language](./300_Extremely_Malicious_Language/) | 300 |
-| [Who Is That In That Mirror](./300_Who_Is_That_In_That_Mirror/) | 300 |
+| [Who Is That In That Mirror](./300_Who_Is_That_In_The_Mirror/) | 300 |
 | [FirstFail](./400_FirstFail/) | 300 |
