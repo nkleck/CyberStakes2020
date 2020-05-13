@@ -1,4 +1,4 @@
-varying# Who Is That In The Mirror
+# Who Is That In The Mirror
 
 ## Challenge
 * Category: Web Security
