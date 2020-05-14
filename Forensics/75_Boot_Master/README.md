@@ -20,7 +20,7 @@ We found another floppy disk image, but we can't get this one to boot like we di
 Looking at floppy from bootcamp, file recognizes it as a MBR
 
 ```
-$  file floppy.img
+$ file floppy.img
 floppy.img: DOS/MBR boot sector
 ```
 

@@ -29,7 +29,7 @@ This will produce the following plaintext:
 104873340459054924181115292546315913092671367560727053916844669
 ```
 
-We'll do 2 converstions:
+We'll do 2 conversions:
 * INT -> HEX
 * HEX -> ASCII
 
