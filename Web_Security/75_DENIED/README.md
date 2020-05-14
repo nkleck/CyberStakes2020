@@ -28,7 +28,7 @@ Disallow: /maintenance_foo_bar_deadbeef_12345.html
 Now go to http://challenge.acictf.com:22362/maintenance_foo_bar_deadbeef_12345.html and Right-Click > Inspect the page.
 
 We find the following HTML thats commented out
-```
+```html
 <!--
             Disabled for being insecure... oops!
         <form action="/secret_maintenance_foo_543212345", method="POST">

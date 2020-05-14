@@ -18,7 +18,7 @@ Ok. This time we Right-Click > Inspect the page. We see the form input has `onin
 
 In the new tab we see the following:
 
-```
+```javascript
 function check_flag() { var flag = document.forms["flagChecker"]["flag"].value; var submit_button = document.forms["flagChecker"]["submit"]; var status_field = document.getElementById("status"); if (flag == "ACI{client_side_fail_845ce5f8}") { submit_button.disabled=false; status_field.innerHTML = ""; } else { submit_button.disabled=true; status_field.innerHTML = "error: does not match flag"; } }
 ```
 
