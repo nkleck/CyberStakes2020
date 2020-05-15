@@ -301,7 +301,7 @@ $ rm /etc/nginx/sites-enabled/default
 $ systemctl restart nginx
 ```
 
-Now we just need to setup a listener on port `1337`.
+Now we just need to setup a listener on port `1337`. So our payload is using netcat `nc` to call out to our listener, but we can also use netcat to setup the listener. SANS has a good [cheat sheet](https://www.sans.org/security-resources/sec560/netcat_cheat_sheet_v1.pdf) on netcat. the `-l` flag means `listen mode` and the `-p` followed by a number is the local port to listen on. 
 
 ```
 nc -l -p 1337
