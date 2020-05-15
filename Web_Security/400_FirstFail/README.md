@@ -123,7 +123,7 @@ def get_entries(pattern):
 
 Look at the line `res = subprocess.check_output('cat data/'+pattern, shell=True)`. What is occurring here is python is calling [subprocess](https://docs.python.org/3/library/subprocess.html), which can be used to run shell commands. In this case, the shell is going to `cat` the contents of the `data/challenge.acictf.com\:62110` file. Now, currently the contents of that file are `username="testuser",password="testpassword"`, but what if we were able to inject some code into that file. We could potentially extract the contents of the flag file via this command.
 
-That raises a second question. How can we inject commands into the `data/challenge.acictf.com\:62110` file? Well the `host.py` script has an `if` statement that calls a `store_entry()` function.
+That raises a second question. How can we inject commands into the `data/challenge.acictf.com\:62110` file? The `host.py` script has an `if` statement that calls a `store_entry()` function.
 
 ```python
 if msg['type'] == 'add_entry':
@@ -167,7 +167,7 @@ username=console.log('hello world'),password="test"
 
 Re-Open your chrome browser so we reload the plugin and browse to `http://challenge.acictf.com:62110/example` and then open the plugin `chrome-extension://cegaaaajnnledpnkmnjenhbakdijgcjo/manager.html`. Right-Click > Inspect this page. Go to the `console` tab and you should see `hello world` in the output.
 
-Ok. Let's test that we can use the plugin to access a file in the filesystem. This time, edit your `data/challenge.acictf.com\:62110` file with a payload that
+Ok. Let's test that we can use the plugin to access a file in the filesystem. This time, edit your `data/challenge.acictf.com\:62110` file with a payload that outputs the contents of a file into a local file we will create.
 
 ```
 $ vim data/challenge.acictf.com\:62110
