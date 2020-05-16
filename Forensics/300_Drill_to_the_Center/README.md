@@ -75,7 +75,7 @@ They asked us to take a look at the program. So I am assuming they want us to fi
 
 ##### Find the hex to change
 
-First we need to figure out what we need to change. We will edit the binary in a hex editor, we we will need to find the hex to change. I found this part easier to do in IDA, but figured out how to do it in Ghidra. I'll explain both.
+First we need to figure out what we need to change. Since we will edit the binary in a hex editor,  we need to find the hex to change. I found this part easier to do in IDA, but figured out how to do it in Ghidra. I'll explain both.
 
 In IDA, You will see the long hex `0FFFFFFFFFFFFFFFFh`. Highlight it and then switch to your `Hex View-1` tab. The Hex is highlighted.
 
@@ -290,8 +290,11 @@ After running, it should look like this.
 
 ![flag](images/run_function_with_string.png)
 
+```
 Before: b4szb3Hminf0ugrjujt2Ajp9xA8jCH2
 After: ISVCIRIPLQIOXJUMXMWQFMSXAFWMHIQ
+```
 
 The flag is the after output.
+
 **ACI{ISVCIRIPLQIOXJUMXMWQFMSXAFWMHIQ}**
