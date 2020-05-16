@@ -73,7 +73,7 @@ In **FUN_00100a21** `__ptr = malloc(0x20);`. Repeat the above step and convert `
 
 They asked us to take a look at the program. So I am assuming they want us to fix and run it. Let's try and change `0xffffffffffffffff` to something a bit more reasonable. I'm going with 255 bytes, or `0xff`. You can use [rapidtables dec to hex](https://www.rapidtables.com/convert/number/decimal-to-hex.html) converter. Plug in a number and it will give you the hex.
 
-###### Find the hex to change
+##### Find the hex to change
 
 First we need to figure out what we need to change. We will edit the binary in a hex editor, we we will need to find the hex to change. I found this part easier to do in IDA, but figured out how to do it in Ghidra. I'll explain both.
 
@@ -96,7 +96,7 @@ Now that is converted, we can see the hex we need to grab.
 Both methods give us `0x48C7C7FFFFFFFF`. This is what we will change in `drill2`. We are basically removing 3 of the `FF` and replacing with `00`. The result will be `0x48C7C7FF000000`
 
 
-###### Change the hex in drill2
+##### Change the hex in drill2
 
 I don't want to make changes to our original binary, so copy `drill` and name the new file `drill2`. CLI this would be: `$ cp drill drill2`.
 
@@ -106,7 +106,7 @@ In Hex Fiend select Edit > Find. Type `48 C7 C7 FF FF FF FF` in the Find field a
 
 ![fix drill2](images/fix_malloc.png)
 
-###### Run drill2
+##### Run drill2
 
 Let's try running the new binary.
 
