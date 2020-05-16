@@ -27,7 +27,7 @@ Ok. Now that you have read the article, let's discuss what the author did. Sure 
 
 Go ahead and click the `Start Challenge` button and generate our docker image. Go to the website and you will find a login page. Before we do anything, let's analyze the [database dump](./database.sql) and formulate an approach. There are two things that immediately catch our interest from the dump.
 
-**First**, the sql dump contains a series of commands that generate the `users` table and then `insert` a couple entries. Looking at the challenge login page, there is a `Register` button. This means we that when we create a user, our input is written to the `users` table. Going back to the Article referenced in the hint, we may be able to write perform a SQL injection here. We will have to determine which columns we are able to inject into in a bit.
+**First**, the sql dump contains a series of commands that generate the `users` table and then `insert` a couple entries. Looking at the challenge login page, there is a `Register` button. This means we that when we create a user, our input is written to the `users` table. Going back to the Article referenced in the hint, we may be able to perform a SQL injection here. In a bit, we will determine which columns we are able to perform an inject.
 ```sql
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
