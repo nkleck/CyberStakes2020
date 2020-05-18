@@ -1,0 +1,2 @@
+Forensics/300_Needle_in_the_Haystack/dump/6480.dmp filter=lfs diff=lfs merge=lfs -text
+Forensics/300_Needle_in_the_Haystack/ram.img.tar.gz filter=lfs diff=lfs merge=lfs -text
