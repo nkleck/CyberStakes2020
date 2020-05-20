@@ -187,7 +187,7 @@ Cool. Now what. This is where the geth documentation falls apart. Everything ent
 
 Ok cool. It looks like `geth` returned some information about our blockchain `blockNumber: 62,` and `defaultBlock: "latest",`. I played around with most of these commands and would get errors because I did not know what parameters the commands needed. I finally tried `> eth.getBlock("latest")` and got some data!
 
-```json
+```
 {
   difficulty: 132736,
   extraData: "0xd883010906846765746888676f312e31332e31856c696e7578",
@@ -216,7 +216,7 @@ You can skip this step. I then manually incremented back from block `62` until I
 
 You can skip this next step as well. I then tried the `eth.getTransactionFromBlock(##)` command from block `62` to `0` and did not see our starting hex. `> eth.getTransactionFromBlock(2)`
 
-```json
+```
 {
   blockHash: "0xe117fa8d2405ca3fbf7682bc0be8db74472aa3c8ab4f72d8f5218b83349a0344",
   blockNumber: 2,
@@ -239,7 +239,7 @@ So after a lot of querying I had not found `0xb4ba4b90df51d42a7c6093e92e1c7d2287
 
 So I then went through each block using the `eth.getBlockByNumber("hex", true)` command. If you don't know hex numbers, you can use [rapidtables int to hex](https://www.rapidtables.com/convert/number/decimal-to-hex.html) to convert the block number to the hex you will need for the command. Now, take a look at `> eth.getBlockByNumber("0x2", true)`
 
-```json
+```
 {
   difficulty: "0x20000",
   extraData: "0xd883010906846765746888676f312e31332e31856c696e7578",
@@ -421,7 +421,7 @@ Now that we have the address paths, I tried entering them into the challenge web
 
 I re-examined the blocks that contained the transactions for each of the entities bookmarked red. Take a look at our transaction containing `to: "0x167f7969ae2ecf157306f798f63929903a02d771"` in block `0x3c`. Go ahead and run `> eth.getBlockByNumber("0x3c", true)`.  Comparing it to the other transactions from the block above it in the chain, it has a different `input` value.
 
-```json
+```
 {
     blockHash: "0xd7d938fcefbe821e1ed20b9a96b91e3e9efae9bbe637a1df9ca41d51a9fd1868",
     blockNumber: "0x3c",
@@ -444,7 +444,7 @@ I had no clue  what the `input` value is. This is where the hint `Contracts take
 
 The [solidity docs](https://solidity.readthedocs.io/en/develop/abi-spec.html) state: The first four bytes of the call data for a function call specifies the function to be called. It is the first (left, high-order in big-endian) four bytes of the Keccak-256 (SHA-3) hash of the signature of the function.
 
-Thats a lot to digest. To be honest, I didn't really make it past `first four bytes` sentence. The `input` field starts with an interesting four bytes `0xf3fef3a3`. I google that and found https://www.4byte.directory/signatures/?bytes4_signature=0xf3fef3a3. 
+Thats a lot to digest. To be honest, I didn't really make it past `first four bytes` sentence. The `input` field starts with an interesting four bytes `0xf3fef3a3`. I google that and found https://www.4byte.directory/signatures/?bytes4_signature=0xf3fef3a3.
 
 ![contract method](images/contract_method_id.png)
 
