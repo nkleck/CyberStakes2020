@@ -3,7 +3,7 @@
 
 | Challenge Name               | Points  |
 | -----------------------------|---------|
-| [Reverse Engineering 101](./25_Reverse_Engineering101/) | 25 |
+| [Reverse Engineering 101](./25_Reverse_Engineering_101/) | 25 |
 | [Lockbox](./50_Lockbox/) | 50 |
 | [Read it and Weep](./100_Read_it_and_Weep/) | 100 |
 | [Whats the Difference](./100_Whats_the_Difference/) | 100 |
