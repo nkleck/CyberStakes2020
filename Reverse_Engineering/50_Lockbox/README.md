@@ -91,7 +91,7 @@ The hints mentioned `printf` and right there it is concatenating the password st
 printf("%s: %s{%x_%s_%s_%s_%s}\n",&header,&prefix,0xc0de,&uses,&military,"grade","crypto");
 ```
 
-We can manually grab each component of the string from the program and assemble the password. Ghidra will take you to the location by clicking its in the function.
+We can manually grab each component of the string from the program and assemble the password. Ghidra will take you to the location by clicking it in the function.
 
 Start by clicking `&header`
 
@@ -99,7 +99,7 @@ Start by clicking `&header`
 
 We can use [rapidtables hex to ascii](https://www.rapidtables.com/convert/number/hex-to-ascii.html) to convert the hex to ascii characters. Go to their website and paste in `666C6167`. It will return `flag`.
 
-Now, back in the main function click `&prefix`.
+Now, back in the main function, click `&prefix`.
 
 ![prefix](images/prefix.png)
 
@@ -107,13 +107,13 @@ At the rapidtables website, paste `41434900`. It will return `ACI`.
 
 The next parameter, `0xC0DE` is already hex. Pop it into rapidtables if you need. It translates to `c0de` in ascii.
 
-Next, back in the main function click `&uses`.
+Next, back in the main function, click `&uses`.
 
 ![uses](images/uses.png)
 
 Copy its hex out and paste `68617300` into rapidtables. It will return `has`.
 
-Next, back in the main function click `&military`.
+Next, back in the main function, click `&military`.
 
 ![military](images/military.png)
 
