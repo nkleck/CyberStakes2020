@@ -20,7 +20,9 @@ Help! I was ransomwared and payed the ransom. Now I want to track my coins down 
 * [web3.py](https://web3py.readthedocs.io/en/stable/)
 
 
-Alright, so I know next to nothing about blockchain and ethereum mining. Get started by opening up the challenge URL and take a few notes on the instructions.
+Alright, so I know next to nothing about blockchain and even less about ethereum mining. This writeup isn't going to help you better understand ethereum.  There are a ton of resources to understand [ethereum](https://ethereum.stackexchange.com/questions/45/how-would-i-explain-ethereum-to-a-non-technical-friend). What is important to us here is that it has blocks, which consist of transactions. We will be interested in the `from` and `to` values in those transactions. I ended up performing link-analysis using maltego to get the solution. 
+
+Get started by opening up the challenge URL and take a few notes on the instructions.
 
 ![challenge website](images/challenge_website.png)
 
@@ -448,7 +450,7 @@ Thats a lot to digest. To be honest, I didn't really make it past `first four by
 
 ![contract method](images/contract_method_id.png)
 
-Hey! That's probably something. We are dealing with ethereum transactions, which like a bank, could probably make withdrawals. So keep reading the [solidity docs](https://solidity.readthedocs.io/en/develop/abi-spec.html#examples) and we find that `address` is used to make this field. Then I assumed this was the final address we would need. It is the **contract** address.
+Hey! That's probably something. We are dealing with ethereum transactions, which like a bank, could probably make withdrawals. So keep reading the [solidity docs](https://solidity.readthedocs.io/en/develop/abi-spec.html#examples) and we find that `address` is used to make this field. Looking at the input value `0xf3fef3a300000000000000000000000050fc67693f00fbabc5473c3705ef057b09acf2c700000000000000000000000000000000000000000000000022b1c8c1227a0000` we see a has in the center that looks like the other addresses `50fc67693f00fbabc5473c3705ef057b09acf2c7`. Then I assumed this was the final address we would need. It is the **contract** address.
 
 Now I tried this chain of addresses
 
