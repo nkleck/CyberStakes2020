@@ -18,9 +18,9 @@ Of course it's safe to download programs ([npp.6.8.7.bin.minimalist.7z](https://
 * [BinExport](https://reverseengineering.stackexchange.com/questions/22372/do-i-need-to-have-ida-pro-to-use-the-bindiff-tool)
 * [BinDiff](https://www.zynamics.com/bindiff.html)
 
-The approach for this challenge is to examine the two npp (notepad plus) executables and find the differences. Once we find the differences we will reproduce the function in a python script for the flag. That's a pretty simple approach right? Well, it did not turn out to be simple. There are numerous methods to `diff` the npp files, but each method was very finicky and required a few exact steps or the programs would run forever.
+The approach for this challenge is to examine the two npp (notepad plus plus) executables and find the differences. Once we find the differences we will reproduce the function in a python script for the flag. That's a pretty simple approach right? Well, it did not turn out to be simple. There are numerous methods to `diff` the npp files, but each method was very finicky and required a few exact steps or the programs would run forever.
 
-I will detail 2 methods that `diff` the npp executables. The first method uses Ghidra's build in Program Difference Tool. I lost days going down a rabbit-hole with Ghidra's [PatchDiffCorrelator](https://blog.threatrack.de/2019/10/02/ghidra-patch-diff/) plugin. Do not use that plugin. It's not necessary for this challenge. The second method uses [BinExport](https://reverseengineering.stackexchange.com/questions/22372/do-i-need-to-have-ida-pro-to-use-the-bindiff-tool) to export files from ghidra and then uses [BinDiff](https://www.zynamics.com/bindiff.html) to find the difference. Again, I lost a lot of time trying to use bindiff within ghidra only to realize that approach was unnecessary. Sure, we can attempt bindiff in Ghidra, but it takes minutes to run it outside of Ghidra using the bindiff files we export from Ghidra.
+I will detail 2 methods that `diff` the npp executables. The [first method](#method-1-diff-with-ghidra) uses Ghidra's build in Program Difference Tool. I lost days going down a rabbit-hole with Ghidra's [PatchDiffCorrelator](https://blog.threatrack.de/2019/10/02/ghidra-patch-diff/) plugin. Do not use that plugin. It's not necessary for this challenge. The [second method](#method-2-diff-with-bindiff) uses [BinExport](https://reverseengineering.stackexchange.com/questions/22372/do-i-need-to-have-ida-pro-to-use-the-bindiff-tool) to export files from ghidra and then uses [BinDiff](https://www.zynamics.com/bindiff.html) to find the difference. Again, I lost a lot of time trying to use bindiff within ghidra only to realize that approach was unnecessary. Sure, we can attempt bindiff in Ghidra, but it takes minutes to run it outside of Ghidra using the bindiff files we export from Ghidra.
 
 I am starting with a fresh install of [Ghidra](https://ghidra-sre.org/InstallationGuide.html#Install) so we can detail the installation any plugins throughout this walkthrough.
 
@@ -219,7 +219,7 @@ Boom! We found that `npp.exe` has a function `FUN_0060d000` not in the official 
 
 #### Analyze the Difference
 
-Both [Method 1](#method-1:-diff-with-ghidra) and [Method 2](#method-2:-diff-with-bindiff) led us to the same function. C++ can be intimidating if you're not familiar with it. I do not know c++, but can program in other languages. So Let's examine the contents of the function and try to determine what it is doing.
+Both [Method 1](#method-1-diff-with-ghidra) and [Method 2](#method-2-diff-with-bindiff) led us to the same function. C++ can be intimidating if you're not familiar with it. I do not know c++, but can program in other languages. So Let's examine the contents of the function and try to determine what it is doing.
 
 ```c
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
@@ -294,7 +294,7 @@ Finally, let's examine the last part of the function.
 local_54[local_10] = *(ushort *)(&DAT_0060d120 + local_10 * 2) ^ u_6ddf63053B391EB898A2EeFBADb0De3d_0060d180[local_10];
 ```
 
-This line executes every iteration of the while loop. It's filling the `local_54` variable with each iteration. With each iteration it is grabbing the character at `&DAT_0060d120 + local_10 * 2` and XOR'ing it with a character at the position in the unicode string.
+This line executes every iteration of the while loop. It's filling the `local_54` variable with each iteration. During the iteration it is grabbing the character at `&DAT_0060d120 + local_10 * 2` and XOR'ing it with a character at the position in the unicode string.
 
 #### Analyze the Data References
 
@@ -304,7 +304,7 @@ This means that we can replicate the function if we get the characters at those 
 
 ![DAT_0060d0c0](images/DAT_0060d0c0.png)
 
-It doesn't look like Ghidra did much decoding the data for us, but we have the hex! Think back to our while loop. As the `local_10` variable increments, the function grabs the hex at `local_10` * 2. The first one, is 0*2, is 0. So the resulting hex is `0x77`. In the next iteration of the while loop, its 1*2, which is 2. So the resulting hex is `0x27`. Repeat this process of multiplying the `local_10` number by 2 and copy out the hex. In the end you will have the following:
+It doesn't look like Ghidra did much decoding the data for us, but we have the hex! Think back to our while loop. As the `local_10` variable increments, the function grabs the hex at `local_10` * 2. The first one, is 0 * 2, is 0. So the resulting hex is `0x77`. In the next iteration of the while loop, its 1 * 2, which is 2. So the resulting hex is `0x27`. Repeat this process of multiplying the `local_10` number by 2 and copy out the hex. In the end you will have the following:
 
 ```
 "77", "27", "2D", "1D", "53", "56", "54", "04", "05", "7A", "51", "08", "57", "21", "75", "5D", "01", "08", "75", "53", "72", "52", "7F", "70", "73", "22", "04", "02", "76", "55", "00", "19"
